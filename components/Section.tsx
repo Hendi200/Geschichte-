@@ -14,47 +14,48 @@ const Section: React.FC<SectionProps> = ({ id, title, subtitle, children, bgImag
   return (
     <section 
       id={id} 
-      className={`relative min-h-screen py-32 px-4 sm:px-6 lg:px-8 flex flex-col justify-center overflow-hidden ${className}`}
+      className={`relative py-24 md:py-32 lg:py-40 px-4 sm:px-6 lg:px-8 flex flex-col justify-center overflow-hidden w-full ${className}`}
     >
-      {/* Background with darker overlay for better readability */}
+      {/* Background Layer */}
       <div className="absolute inset-0 z-0">
         {bgImage ? (
           <>
             <img 
                 src={bgImage} 
                 alt="Background" 
-                className="w-full h-full object-cover opacity-50 select-none pointer-events-none"
+                className="w-full h-full object-cover opacity-40 select-none pointer-events-none scale-105"
             />
-            {/* Strong gradient to fade image into black at top/bottom and darken overall */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
-            <div className="absolute inset-0 bg-black/40"></div>
+            {/* Smooth gradients for seamless blending */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black via-black/90 to-black"></div>
+            <div className="absolute inset-0 bg-black/30"></div>
           </>
         ) : (
           <div className="w-full h-full bg-black"></div>
         )}
       </div>
 
-      {/* Content Container */}
-      <div className={`relative z-10 max-w-7xl w-full mx-auto`}>
+      {/* Content Container - max-w-7xl ensures Apple-like constraints on large screens */}
+      <div className={`relative z-10 w-full max-w-[1400px] mx-auto`}>
         
-        {/* Header */}
-        <div className={`mb-24 ${align === 'center' ? 'text-center mx-auto' : 'text-left'} max-w-4xl`}>
+        {/* Header Block */}
+        <div className={`mb-16 md:mb-24 ${align === 'center' ? 'text-center mx-auto' : 'text-left'} max-w-4xl px-2`}>
           {subtitle && (
-            <div className={`inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl mb-6 shadow-2xl ${align === 'center' ? 'mx-auto' : ''}`}>
-               <div className="w-1.5 h-1.5 rounded-full bg-ottoman-gold shadow-[0_0_10px_#D4AF37]"></div>
-               <span className="text-ottoman-gold text-xs font-bold tracking-[0.25em] uppercase font-sans">
+            <div className={`inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl mb-6 ${align === 'center' ? 'mx-auto' : ''}`}>
+               <span className="text-ottoman-gold text-[10px] md:text-xs font-bold tracking-[0.25em] uppercase font-sans">
                  {subtitle}
                </span>
             </div>
           )}
-          <h2 className="text-5xl md:text-8xl font-serif font-bold text-white mb-6 drop-shadow-xl tracking-tight leading-[0.9]">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 tracking-tight leading-[1.1]">
             {title}
           </h2>
-          <div className={`h-1 w-32 bg-gradient-to-r from-transparent via-ottoman-gold to-transparent opacity-60 rounded-full ${align === 'center' ? 'mx-auto' : ''}`}></div>
+          {align === 'center' && (
+             <div className="h-1 w-24 bg-white/10 mx-auto rounded-full"></div>
+          )}
         </div>
 
         {/* Content Body */}
-        <div>
+        <div className="w-full">
           {children}
         </div>
       </div>

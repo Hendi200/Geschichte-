@@ -18,11 +18,13 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, scrollToSection 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Updated Chronological Order
   const navItems = [
-    { id: 'intro', label: 'Einführung' },
+    { id: 'timeline-section', label: 'Zeitstrahl' },
+    { id: 'intro', label: '1299' },
     { id: 'rise', label: '1453' },
-    { id: 'vienna', label: '1683' },
     { id: 'culture', label: 'Kultur' },
+    { id: 'vienna', label: '1683' },
     { id: 'fall', label: 'Der Fall' },
   ];
 
@@ -56,7 +58,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, scrollToSection 
                key={item.id}
                onClick={() => scrollToSection(item.id)}
                className={`
-                 relative px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ease-out
+                 relative px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ease-out whitespace-nowrap
                  ${activeSection === item.id 
                    ? 'text-white bg-white/15 shadow-inner' 
                    : 'text-gray-400 hover:text-white hover:bg-white/5'}

@@ -1,66 +1,107 @@
 import React, { useState } from 'react';
 import { AnalysisTopic } from '../types';
-import { ShieldAlert, Sparkles, Handshake } from 'lucide-react';
+import { Eye, Users, TrainFront } from 'lucide-react';
 
 const CulturalAnalysis: React.FC = () => {
   const [activeAnalysis, setActiveAnalysis] = useState<AnalysisTopic>(AnalysisTopic.THREAT);
 
+  // Mapping enums to the new content structure temporarily
+  // We reuse the existing enum keys but change the display content completely
   const analysisContent = {
-    [AnalysisTopic.THREAT]: {
-      title: "Die Türkengefahr",
-      content: `Die "Türkengefahr" dominierte jahrhundertelang die europäische Politik. Nach dem Fall Konstantinopels 1453 läuteten in Europa die "Türkenglocken". Martin Luther sah in den Osmanen die "Geißel Gottes". Diese Angst einte das zerstrittene Europa zeitweise, wurde aber auch propagandistisch genutzt, um Steuern zu erheben.`
+    [AnalysisTopic.THREAT]: { // Using THREAT slot for "Selbstwahrnehmung"
+      title: "Das Millet-System",
+      icon: <Users size={200} />,
+      content: (
+        <>
+          <p className="mb-4">
+            Von sich selber hielten die Osmanen recht viel. Sie standen an der Spitze ihres selbst aufgebauten <strong>Millet-Systems</strong>.
+          </p>
+          <p className="mb-4">
+            In diesem System durften zwar alle Religionen miteinander leben, doch gab es keine Gleichberechtigung. 
+            Alle Untergeordneten (Nicht-Muslime) mussten eine Kopfsteuer an den Staat zahlen.
+          </p>
+          <p>
+             Die Osmanen waren grundsätzlich migrationsfreundlich, solange die Zugezogenen zum Wachstum beisteuern konnten. 
+             Anfang des 20. Jahrhunderts lag der Anteil der Zugezogenen bei knapp 30%.
+          </p>
+        </>
+      )
     },
-    [AnalysisTopic.FASCINATION]: {
-      title: "Turquerie & Luxus",
-      content: `Trotz Krieg herrschte Faszination. Die "Turquerie" prägte das Rokoko: Osmanische Kleidung auf Maskenbällen, Mozarts "Alla Turca" und vor allem der Kaffee, der nach der Belagerung Wiens Europa eroberte. Auch die Tulpe kam aus dem Osmanischen Reich und löste in Holland einen Börsenwahn aus.`
+    [AnalysisTopic.FASCINATION]: { // Using FASCINATION slot for "Fremdwahrnehmung"
+      title: "Der Türkische Scharfrichter",
+      icon: <Eye size={200} />,
+      content: (
+        <>
+          <p className="mb-4">
+            Andere europäische Länder verurteilten die harten Vorgehensweisen der Osmanen bei Niederschlagungen von Aufständen.
+            Man berichtete propagandistisch vom <em>"Le bourreau turc"</em> (der türkische Scharfrichter).
+          </p>
+          <p>
+            Teile der slawischen Bevölkerung lehnten sich gegen die Vorherrschaft und die Steuerlast auf.
+            Das Bild des Osmanischen Reiches wandelte sich in Europa vom faszinierenden Exotismus zum "Kranken Mann am Bosporus".
+          </p>
+        </>
+      )
     },
-    [AnalysisTopic.EXCHANGE]: {
-      title: "Der Blick der Osmanen",
-      content: `Lange blickten die Osmanen auf die "Franken" herab. Konstantinopel war für sie der "Rote Apfel", das Zentrum der Welt. Sie übernahmen jedoch pragmatisch westliche Militärtechnik (Artillerie). Erst mit dem militärischen Niedergang wandelte sich die Arroganz in Reformeifer nach westlichem Vorbild.`
+    [AnalysisTopic.EXCHANGE]: { // Using EXCHANGE slot for "Bündnisse & Bahn"
+      title: "Eisenbahn & Bündnisse",
+      icon: <TrainFront size={200} />,
+      content: (
+        <>
+          <p className="mb-4">
+            Die Türken erkannten, dass sie technologisch nicht mehr mit England und Frankreich mithalten konnten.
+            Es wurde eine Bank gegründet und der legendäre Zug, der Istanbul mit Paris verband.
+          </p>
+          <p className="mb-4">
+            Nachdem Frankreich (Algerien, Tunesien) und England (Ägypten) osmanische Gebiete übernahmen – was als großer Verrat empfunden wurde – suchten die Osmanen neue Verbündete: <strong>Deutschland</strong>.
+          </p>
+          <p>
+            Kaiser Wilhelm II. und Abdülhamid II. planten die <strong>Bagdad-Bahn</strong>, um Waren von Berlin bis Bagdad auszutauschen.
+          </p>
+        </>
+      )
     }
   };
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6 w-full h-full">
       {/* iOS Segmented Control */}
-      <div className="bg-black/40 p-1 rounded-2xl flex flex-col sm:flex-row backdrop-blur-md border border-white/5">
+      <div className="bg-[#1c1c1e] p-1.5 rounded-2xl flex flex-col md:flex-row border border-white/5">
         <button 
           onClick={() => setActiveAnalysis(AnalysisTopic.THREAT)}
-          className={`flex-1 py-3 px-4 rounded-xl text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 ${activeAnalysis === AnalysisTopic.THREAT ? 'bg-white/15 text-white shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+          className={`flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2.5 ${activeAnalysis === AnalysisTopic.THREAT ? 'bg-[#3a3a3c] text-white shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
         >
-          <ShieldAlert size={16} />
-          <span>Bedrohung</span>
+          <Users size={18} />
+          <span>Selbstwahrnehmung</span>
         </button>
         <button 
           onClick={() => setActiveAnalysis(AnalysisTopic.FASCINATION)}
-          className={`flex-1 py-3 px-4 rounded-xl text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 ${activeAnalysis === AnalysisTopic.FASCINATION ? 'bg-white/15 text-white shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+          className={`flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2.5 ${activeAnalysis === AnalysisTopic.FASCINATION ? 'bg-[#3a3a3c] text-white shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
         >
-          <Sparkles size={16} />
-          <span>Faszination</span>
+          <Eye size={18} />
+          <span>Fremdwahrnehmung</span>
         </button>
         <button 
           onClick={() => setActiveAnalysis(AnalysisTopic.EXCHANGE)}
-          className={`flex-1 py-3 px-4 rounded-xl text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 ${activeAnalysis === AnalysisTopic.EXCHANGE ? 'bg-white/15 text-white shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+          className={`flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2.5 ${activeAnalysis === AnalysisTopic.EXCHANGE ? 'bg-[#3a3a3c] text-white shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
         >
-          <Handshake size={16} />
-          <span>Austausch</span>
+          <TrainFront size={18} />
+          <span>Bündnisse</span>
         </button>
       </div>
 
       {/* Content Card */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 p-8 min-h-[250px] animate-fade-in">
-        <h3 className="text-2xl font-serif font-bold text-ottoman-gold mb-4">
+      <div className="flex-grow relative overflow-hidden rounded-[2rem] bg-[#1c1c1e] border border-white/10 p-8 md:p-10 animate-fade-in flex flex-col justify-center min-h-[400px]">
+        <h3 className="text-2xl md:text-3xl font-serif font-bold text-white mb-6">
           {analysisContent[activeAnalysis].title}
         </h3>
-        <p className="text-gray-200 leading-relaxed text-lg font-light">
+        <div className="text-gray-300 leading-relaxed text-base md:text-lg z-10 relative">
           {analysisContent[activeAnalysis].content}
-        </p>
+        </div>
         
         {/* Background Decorative Element */}
-        <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
-           {activeAnalysis === AnalysisTopic.THREAT && <ShieldAlert size={120} />}
-           {activeAnalysis === AnalysisTopic.FASCINATION && <Sparkles size={120} />}
-           {activeAnalysis === AnalysisTopic.EXCHANGE && <Handshake size={120} />}
+        <div className="absolute -top-4 -right-4 opacity-[0.03] pointer-events-none text-white">
+           {analysisContent[activeAnalysis].icon}
         </div>
       </div>
     </div>
