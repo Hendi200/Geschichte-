@@ -1,9 +1,9 @@
-
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import Section from './components/Section';
 import CulturalAnalysis from './components/CulturalAnalysis';
 import Timeline from './components/Timeline';
+import BentoCard from './components/BentoCard';
 import { ChevronDown, MapPin, Crown, Swords, Ship, ShieldCheck, Pickaxe, Star, AlertTriangle } from 'lucide-react';
 import { getAsset } from './assets';
 
@@ -41,100 +41,6 @@ const App: React.FC = () => {
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({top: y, behavior: 'smooth'});
     }
-  };
-
-  // 3D Tilt Effect Bento Card (Simplified, No Shuffle)
-  interface BentoProps {
-    children?: React.ReactNode;
-    title?: string;
-    className?: string;
-    icon?: any;
-    image?: string; // Single string now
-    dark?: boolean;
-    onClick?: () => void;
-  }
-
-  const BentoCard: React.FC<BentoProps> = ({ children, title, className = "", icon: Icon, image, dark = false, onClick }) => {
-    const cardRef = useRef<HTMLDivElement>(null);
-    const [transform, setTransform] = useState("perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)");
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!cardRef.current) return;
-        
-        const { left, top, width, height } = cardRef.current.getBoundingClientRect();
-        const x = e.clientX - left;
-        const y = e.clientY - top;
-        
-        const centerX = width / 2;
-        const centerY = height / 2;
-        
-        // Calculate rotation based on cursor position relative to center
-        // Limit rotation to 5 degrees for a subtle Apple-like effect
-        const rotateX = ((y - centerY) / centerY) * -3; 
-        const rotateY = ((x - centerX) / centerX) * 3;
-
-        setTransform(`perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`);
-    };
-
-    const handleMouseLeave = () => {
-        setTransform("perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)");
-    };
-
-    return (
-      <div 
-        ref={cardRef}
-        onClick={onClick}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{ transform, transition: 'transform 0.1s ease-out' }}
-        className={`
-          relative h-full w-full overflow-hidden rounded-[2rem] border transition-all duration-500 group flex flex-col shadow-lg
-          ${image ? 'hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)] border-white/10' : 'bg-[#1c1c1e] hover:bg-[#252527] border-white/5 hover:border-white/10 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]'}
-          ${dark ? 'bg-black border-white/10' : ''}
-          ${className}
-        `}
-      >
-        {/* Shine Effect Overlay */}
-        <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-        {/* Background Image Handling */}
-        {image && (
-          <div className="absolute inset-0 z-0 bg-black">
-            <img 
-              src={image} 
-              alt={title || "Image"} 
-              className="w-full h-full object-cover transition-opacity duration-700 ease-in-out"
-            />
-            {/* Gradients for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90"></div>
-            <div className="absolute inset-0 bg-black/10"></div>
-          </div>
-        )}
-
-        {/* Content Container */}
-        <div className="relative z-10 p-6 md:p-8 lg:p-10 flex flex-col h-full pointer-events-none">
-          {title && (
-            <div className="flex items-start justify-between mb-4 md:mb-6 shrink-0 pointer-events-auto">
-               <div className="flex items-center gap-3 md:gap-4">
-                 {Icon && (
-                   <div className="p-2.5 rounded-2xl bg-white/10 text-ottoman-gold backdrop-blur-md border border-white/10">
-                     <Icon size={20} strokeWidth={2} />
-                   </div>
-                 )}
-                 <h3 className={`text-xl md:text-2xl font-serif font-bold tracking-tight drop-shadow-lg ${image ? 'text-white' : 'text-[#f5f5f7]'}`}>
-                   {title}
-                 </h3>
-               </div>
-            </div>
-          )}
-          
-          {/* Children fill the remaining space */}
-          <div className={`leading-relaxed font-sans font-normal text-base md:text-lg flex-grow flex flex-col ${image ? 'text-gray-200 shadow-black drop-shadow-md' : 'text-[#86868b]'} overflow-y-auto pr-2 custom-scrollbar pointer-events-auto`}>
-            {children}
-          </div>
-        </div>
-      </div>
-    );
   };
 
   return (

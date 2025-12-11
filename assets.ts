@@ -1,50 +1,52 @@
 
 // Central Asset Management
-// Feste, hochwertige Bilder für die Website.
+// LOKALE DATEIEN
+// Die Bilder liegen im Ordner "untitled-0".
+// Dateinamen müssen 1.jpg bis 17.jpg sein.
 
 export const assets = {
-  // Hero: Blaue Moschee bei Dämmerung, episch
-  hero: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=2832&auto=format&fit=crop",
+  // 1.jpg -> Startseite (Hero)
+  hero: "/untitled-0/1.jpg",
   
-  // Intro Hintergrund: Dunkles, osmanisches Muster
-  intro_bg: "https://images.unsplash.com/photo-1590053913076-18a7ae7e1a3b?q=80&w=2670&auto=format&fit=crop",
+  // 2.jpg -> Intro Text Hintergrund
+  intro_bg: "/untitled-0/2.jpg",
   
-  // Osman I: Tughra (Kalligraphie) oder symbolisches Schwert/Rüstung
-  osman: "https://images.unsplash.com/photo-1633108603681-30cb129994b6?q=80&w=2670&auto=format&fit=crop",
+  // 3.jpg -> Osman I.
+  osman: "/untitled-0/3.jpg",
   
-  // Bursa: Innenansicht Moschee, Stein, Licht
-  bursa: "https://images.unsplash.com/photo-1580136608079-72029d0de130?q=80&w=2574&auto=format&fit=crop",
+  // 4.jpg -> Bursa
+  bursa: "/untitled-0/4.jpg",
   
-  // Kanone: Alte Bronze-Textur / Festungsmauer
-  cannon: "https://images.unsplash.com/photo-1599665678486-13dfdb2038b3?q=80&w=2670&auto=format&fit=crop",
+  // 5.jpg -> Kanone
+  cannon: "/untitled-0/5.jpg",
   
-  // Schiffe: Nacht, Wasser, Nebel
-  ships: "https://images.unsplash.com/photo-1500373994743-5575f2f50016?q=80&w=2574&auto=format&fit=crop",
+  // 6.jpg -> Schiffe
+  ships: "/untitled-0/6.jpg",
   
-  // Hagia Sophia: Innenraum, Kuppel
-  hagia_sophia: "https://images.unsplash.com/photo-1571167520092-2f3475949d23?q=80&w=2670&auto=format&fit=crop",
+  // 7.jpg -> Hagia Sophia
+  hagia_sophia: "/untitled-0/7.jpg",
   
-  // Wien Mauer: Große Festung
-  vienna_wall: "https://images.unsplash.com/photo-1594498653385-d5172c532c00?q=80&w=2574&auto=format&fit=crop",
+  // 8.jpg -> Wien Mauer
+  vienna_wall: "/untitled-0/8.jpg",
   
-  // Wien Tunnel: Untergrund, dunkel
-  vienna_tunnels: "https://images.unsplash.com/photo-1605634453473-f938c5387431?q=80&w=2670&auto=format&fit=crop",
+  // 9.jpg -> Wien Tunnel
+  vienna_tunnels: "/untitled-0/9.jpg",
   
-  // Wien Vertrag: Altes Papier/Gemälde
-  vienna_treaty: "https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?q=80&w=2574&auto=format&fit=crop",
+  // 10.jpg -> Wien Vertrag
+  vienna_treaty: "/untitled-0/10.jpg",
   
-  // Der Fall Hintergrund: Trümmer/Erster Weltkrieg Vibe
-  fall_bg: "https://images.unsplash.com/photo-1533496030588-e219666f44d9?q=80&w=2668&auto=format&fit=crop",
+  // 11.jpg -> Der Fall Hintergrund
+  fall_bg: "/untitled-0/11.jpg",
   
-  // Atatürk: Moderne Türkei / Flagge / Statue SW
-  ataturk: "https://images.unsplash.com/photo-1528659553764-7e50153835c2?q=80&w=2670&auto=format&fit=crop",
+  // 12.jpg -> Atatürk
+  ataturk: "/untitled-0/12.jpg",
   
-  // Timeline Images
-  timeline_1299: "https://images.unsplash.com/photo-1545163628-86d13264b38d?q=80&w=2574&auto=format&fit=crop", // Archway
-  timeline_1453: "https://images.unsplash.com/photo-1527838832700-5059252407fa?q=80&w=2598&auto=format&fit=crop", // Istanbul
-  timeline_1520: "https://images.unsplash.com/photo-1584555614082-996a6d616335?q=80&w=2574&auto=format&fit=crop", // Tiles
-  timeline_1683: "https://images.unsplash.com/photo-1516550893923-42d28e5677af?q=80&w=2672&auto=format&fit=crop", // Castle
-  timeline_1914: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=2670&auto=format&fit=crop"  // Old Book/Map
+  // Zeitstrahl Bilder (13-17)
+  timeline_1299: "/untitled-0/13.jpg",
+  timeline_1453: "/untitled-0/14.jpg",
+  timeline_1520: "/untitled-0/15.jpg",
+  timeline_1683: "/untitled-0/16.jpg",
+  timeline_1914: "/untitled-0/17.jpg"
 };
 
 // Helper function to get an asset by key
